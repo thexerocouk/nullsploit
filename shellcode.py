@@ -49,4 +49,4 @@ def generate( PAYLOAD, ARGS ):
     
     else:
         print "Shellcode %s does not exist" % PAYLOAD
-        quit()
+        exit()
