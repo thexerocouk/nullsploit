@@ -39,6 +39,7 @@ stub16
 
 """
 from struct import pack
+from exploitutils import *
 
 def encoder(shellcode, seed):
     
@@ -81,12 +82,12 @@ def generate(shellcode, badchars):
                 if seed != 0xff:
                     seed+=1
                 else:
-                    print "\033[1;31;40m [!] Encoding failed\033[0;37;40m"
+                    print_bad("Encoding failed")
                     exit()
             new_shellcode = stub8(len(shellcode), seed)
             new_shellcode+= encoder(shellcode, seed)    
             
-        #print "\033[1;32;40m [+] Shellcode length: %s\033[0;37;40m" % len(new_shellcode)
+        #print_update("Shellcode length: %s" % len(new_shellcode))
         return new_shellcode
     elif len(shellcode) < 65535:
         new_shellcode = stub16(len(shellcode), seed)
@@ -99,13 +100,13 @@ def generate(shellcode, badchars):
                 if seed != 0xff:
                     seed+=1
                 else:
-                    print "\033[1;31;40m [!] Encoding failed!\033[0;37;40m"
+                    print_bad("Encoding failed!")
                     exit()
             new_shellcode = stub16(len(shellcode), seed)
             new_shellcode+= encoder(shellcode, seed)                              
                     
-        #print "\033[1;32;40m [+] Shellcode length: %s\033[0;37;40m" % len(new_shellcode)
+        #print_status("Shellcode length: %s" % len(new_shellcode))
         return new_shellcode    
     else:
-        print "\033[1;31;40m [!] Shellcode too large!\033[0;37;40m"
+        print_bad("Shellcode too large!")
         exit()

